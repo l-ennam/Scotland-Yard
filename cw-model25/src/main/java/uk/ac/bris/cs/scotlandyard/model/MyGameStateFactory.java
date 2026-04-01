@@ -10,6 +10,7 @@ import jakarta.annotation.Nonnull;
 
 import uk.ac.bris.cs.scotlandyard.model.Board.GameState;
 import uk.ac.bris.cs.scotlandyard.model.Move.SingleMove;
+import uk.ac.bris.cs.scotlandyard.model.Move.DoubleMove;
 import uk.ac.bris.cs.scotlandyard.model.Piece.Detective;
 import uk.ac.bris.cs.scotlandyard.model.ScotlandYard.Factory;
 import uk.ac.bris.cs.scotlandyard.model.ScotlandYard.Ticket;
