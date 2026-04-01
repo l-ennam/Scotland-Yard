@@ -90,8 +90,5 @@ public final class MyModelFactory implements Factory<Model> {
 				observerList.remove(observer);
 			}
 		}
-
-
 	}
-
 }
