@@ -142,9 +142,6 @@ public final class MyGameStateFactory implements Factory<GameState> {
 			}
 
 			// 3. Mr X wins if final round completed and not caught
-			//if (log.size() == setup.moves.size()) {
-			//	return ImmutableSet.of(mrX.piece());
-			//}
 			boolean detectivesTurn = remaining.stream().anyMatch(Piece::isDetective);
 			if (log.size() == setup.moves.size() && !detectivesTurn) {
 				return ImmutableSet.of(mrX.piece());
