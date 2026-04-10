@@ -107,6 +107,7 @@ public final class MyGameStateFactory implements Factory<GameState> {
 			}
 			for (Player d : detectives) {
 				if (d.piece() == piece) {
+					final Player det = d;
 					return Optional.of(ticket -> d.tickets().getOrDefault(ticket, 0));
 				}
 			}
@@ -141,7 +142,11 @@ public final class MyGameStateFactory implements Factory<GameState> {
 			}
 
 			// 3. Mr X wins if final round completed and not caught
-			if (log.size() == setup.moves.size()) {
+			//if (log.size() == setup.moves.size()) {
+			//	return ImmutableSet.of(mrX.piece());
+			//}
+			boolean detectivesTurn = remaining.stream().anyMatch(Piece::isDetective);
+			if (log.size() == setup.moves.size() && !detectivesTurn) {
 				return ImmutableSet.of(mrX.piece());
 			}
 
@@ -190,6 +195,9 @@ public final class MyGameStateFactory implements Factory<GameState> {
 							: LogEntry.hidden(sm.ticket);
 
 					ImmutableSet<Piece> nextRemaining = detectivesWhoCanMove(detectives);
+					if (nextRemaining.isEmpty() && log.size() + 1 < setup.moves.size()) {
+						nextRemaining = ImmutableSet.of(mrX.piece());
+					}
 
 					return new MyGameState(
 							setup,
