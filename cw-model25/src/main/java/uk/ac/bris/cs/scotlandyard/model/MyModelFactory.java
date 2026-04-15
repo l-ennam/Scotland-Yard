@@ -60,7 +60,7 @@ public final class MyModelFactory implements Factory<Model> {
 			}
 		}
 
-		public void registerObserver(Observer observer)
+		public void registerObserver(@Nonnull Observer observer)
 		{
 			if (observer == null) 
 			{
@@ -76,7 +76,7 @@ public final class MyModelFactory implements Factory<Model> {
 			}
 		}
 		
-		public void unregisterObserver(Observer observer) {
+		public void unregisterObserver(@Nonnull Observer observer) {
 			if (observer == null) 
 			{
 				throw new NullPointerException("Error: Observer shouldnt be NULL");
