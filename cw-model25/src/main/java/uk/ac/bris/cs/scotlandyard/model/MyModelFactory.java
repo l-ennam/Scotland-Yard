@@ -24,12 +24,12 @@ public final class MyModelFactory implements Factory<Model> {
 		List<Observer> observerList = new ArrayList<>();
 		Board.GameState state;
 
-		public Board getCurrentBoard()
+		@Nonnull @Override public Board getCurrentBoard()
 		{
 			return state;
 		}
 
-		public ImmutableSet<Observer> getObservers ()
+		@Nonnull @Override public ImmutableSet<Observer> getObservers ()
 		{
 			return ImmutableSet.copyOf(observerList);
 		}
@@ -39,7 +39,7 @@ public final class MyModelFactory implements Factory<Model> {
 			this.state = new MyGameStateFactory().build(setup, mrX, detectives);
 		}
 
-		public void chooseMove(@Nonnull Move move) 
+		@Override public void chooseMove(@Nonnull Move move) 
 		{
 			Event obsEvent;
 			state = state.advance(move);
@@ -60,7 +60,7 @@ public final class MyModelFactory implements Factory<Model> {
 			}
 		}
 
-		public void registerObserver(@Nonnull Observer observer)
+		@Override public void registerObserver(@Nonnull Observer observer)
 		{
 			if (observer == null) 
 			{
@@ -76,7 +76,7 @@ public final class MyModelFactory implements Factory<Model> {
 			}
 		}
 		
-		public void unregisterObserver(@Nonnull Observer observer) {
+		@Override public void unregisterObserver(@Nonnull Observer observer) {
 			if (observer == null) 
 			{
 				throw new NullPointerException("Error: Observer shouldnt be NULL");
